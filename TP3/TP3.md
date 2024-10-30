@@ -158,6 +158,6 @@ VLAN Name                             Status    Ports
 
 
   - PC5> dhcp
-  DDD^C
-  Can't find dhcp server
+    DDD^C
+    Can't find dhcp server
 ```
