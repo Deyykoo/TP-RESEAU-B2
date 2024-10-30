@@ -143,5 +143,21 @@ VLAN Name                             Status    Ports
 
 🌞 VM dhcp.tp3.b2
 ```
+- PC4> dhcp
 
+  DORA IP 10.1.1.100/24 GW 10.1.1.0
+
+
+- PC4> ping 10.1.1.100
+
+  10.1.1.100 icmp_seq=1 ttl=64 time=0.001 ms
+  10.1.1.100 icmp_seq=2 ttl=64 time=0.001 ms
+  10.1.1.100 icmp_seq=3 ttl=64 time=0.001 ms
+  10.1.1.100 icmp_seq=4 ttl=64 time=0.001 ms
+  10.1.1.100 icmp_seq=5 ttl=64 time=0.001 ms
+
+
+  - PC5> dhcp
+  DDD^C
+  Can't find dhcp server
 ```
