@@ -156,3 +156,53 @@ MTU         : 1500
 84 bytes from 10.1.30.1 icmp_seq=4 ttl=63 time=15.449 ms
 84 bytes from 10.1.30.1 icmp_seq=5 ttl=63 time=17.333 ms
 ```
+
+# II. NAT
+🌞 Ajoutez le noeud Cloud à la topo
+```
+R1#ping 1.1.1.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 1.1.1.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 20/40/120 ms
+```
+🌞 Configurez le NAT
+```
+interface FastEthernet0/0
+ no ip address
+ ip nat inside
+ ip virtual-reassembly
+ duplex half
+!
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 10.1.10.254 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+!
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 10.1.20.254 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+!
+interface FastEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 10.1.30.254 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+!
+interface FastEthernet1/0
+ ip address dhcp
+ ip nat outside
+```
+🌞 Test
+```
+R1#ping 8.8.8.8
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 60/63/68 ms
+```
